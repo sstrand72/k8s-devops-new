@@ -6,8 +6,6 @@ spec:
   containers:
     - name: cuda-test
       image: "yanivomc/spring-music:latest"
-  nodeSelector:
-    env: prod
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -28,19 +26,19 @@ spec:
             - t3.large
     podAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-              matchExpressions:
-              - key: cache
-                operator: In
-                values:
-                - redis
-            topologyKey: topology.kubernetes.io/zone
-     podAntiAffinity:
+      - labelSelector:
+          matchExpressions:
+          - key: cache
+            operator: In
+            values:
+            - redis
+        topologyKey: topology.kubernetes.io/zone
+    podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - spring-music
-          topologyKey: topology.kubernetes.io/zone     
+      - labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - spring-music
+        topologyKey: topology.kubernetes.io/zone
