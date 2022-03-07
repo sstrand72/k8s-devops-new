@@ -27,15 +27,15 @@ spec:
             values:
             - t3.large
     podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
               matchExpressions:
               - key: cache
                 operator: In
                 values:
                 - redis
             topologyKey: topology.kubernetes.io/zone
-        podAntiAffinity:
+      podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
                 matchExpressions:
@@ -43,7 +43,7 @@ spec:
                   operator: In
                   values:
                   - spring-music
-            topologyKey: topology.kubernetes.io/zone 
+          topologyKey: topology.kubernetes.io/zone 
   containers:
   - name: spring-music
     image: yanivomc/spring-music:latest        
