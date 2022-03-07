@@ -43,8 +43,4 @@ spec:
                   operator: In
                   values:
                   - spring-music
-          topologyKey: topology.kubernetes.io/zone 
-  containers:
-  - name: spring-music
-    image: yanivomc/spring-music:latest        
-        
+          topologyKey: topology.kubernetes.io/zone     
