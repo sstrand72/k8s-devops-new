@@ -73,11 +73,6 @@ spec:
           - mountPath: "/var/www/html"
             name: pod-volume-html
 
-      volumes:
-      - name: pod-volume-html
-        persistentVolumeClaim:
-          claimName: stacey-claim
-
 ---
 
 apiVersion: apps/v1
