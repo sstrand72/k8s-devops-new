@@ -36,4 +36,23 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 100%
-                                                                                                                  8,18           9%
+      maxUnavailable: 0
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: spring-music
+        image: "yanivomc/spring-music:latest"
+        volumeMounts:
+        - mountPath: "/var/www/html"
+          name: pod-volume-html
+      volumes:
+      - name: pod-volume-html
+        persistentVolumeClaim:
+          claimName: stacey-claim
