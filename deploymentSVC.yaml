@@ -1,0 +1,39 @@
+metadata:
+  name: slow-io
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: io1
+  iopsPerGB: "100"
+  fsType: ext4
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: stacey-claim
+ annotations:
+   volume.beta.kubernetes.io/storage-class: "slow-io"
+spec:
+ accessModes:
+   - ReadWriteOnce
+ resources:
+   requests:
+     storage: 4Gi
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-music
+  labels:
+    app: ui
+    tier: frontend
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+                                                                                                                  8,18           9%
