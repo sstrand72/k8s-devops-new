@@ -32,7 +32,7 @@ metadata:
 spec:
   ports:
   - port: 31001
-    nodePort: 31001
+    #nodePort: 31001
     targetPort: http-port
     protocol: TCP
   selector:
