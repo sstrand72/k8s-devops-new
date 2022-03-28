@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: strand-configmap
 data:
-  gitrepo: 
-  image: 
+  gitrepo: https://github.com/sstrand72/k8s-devops-new.git
+  image: SwissAlps.jpg
