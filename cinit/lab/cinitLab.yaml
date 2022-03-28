@@ -1,3 +1,19 @@
+kind: Service    
+apiVersion: v1     
+metadata:
+  name: myapp 
+spec:
+  selector:
+    app: myapp   
+  ports:        
+  - name: http-web    
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+  
+---
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -16,6 +32,8 @@ spec:
   - name: init-step2
     image: 
     command: 
-    
+       
 ---
+
+
 
