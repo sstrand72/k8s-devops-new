@@ -53,9 +53,9 @@ spec:
         volumeMounts:
         - mountPath: /cdn
           name: cdn
-      volumes:
-      - name: cdn
-        emptyDir: {}
+    volumes:
+    - name: cdn
+      emptyDir: {}
        
 ---
 
