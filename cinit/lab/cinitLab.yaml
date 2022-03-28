@@ -32,13 +32,15 @@ metadata:
     app: myapp
 spec:
   containers: 
-  - name: 
+  - name: cdn
     image: nginx:latest
     command: 
   initContainers:
   - name: init-step1 # INIT 1 
     image: alpine:/git:latest
-    command: 
+    command: ["git", "clone", "-b"]
+    args: ["$(GITREPO)"]
+    env: 
   - name: init-step2
     image: 
     command: 
