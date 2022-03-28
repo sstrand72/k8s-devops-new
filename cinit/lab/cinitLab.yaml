@@ -39,23 +39,22 @@ spec:
     volumeMounts:
     - mountPath: /usr/share/nginx/html
       name: cdn
-    initContainers:
-    - name: git
-      image: alpine/git:latest
-      command: ["git"]
-       args: ["clone", "$(GIT_URL)", "/cdn"]
-        env:
-        - name: GIT_URL
-          valueFrom:
-           configMapKeyRef:
-            name: strand-configmap
-            key: GIT_URL
-      volumeMounts:
-      - mountPath: /cdn
-        name: cdn
-    volumes:
-    - name: cdn
-      emtyDir: {}
+  initContainers:
+  - name: git
+    image: alpine/git:latest
+    command: ["git"]
+    args: ["clone", "$(GIT_URL)", "/cdn"]
+    env:
+    - name: GIT_URL
+      valueFrom:
+        configMapKeyRef:
+          name: strand-configmap
+          key: GIT_URL
+    volumeMounts:
+    - mountPath: /cdn
+      name: cdn
+  volumes:
+  - name: cdn
+    emptyDir: {}
 
 ---
-
