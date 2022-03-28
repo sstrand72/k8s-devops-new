@@ -46,11 +46,11 @@ spec:
         command: ["git"]
         args: ["clone", "$(GITREPO)", "/cdn"]
         env:
-        - name: GIT_URL
+        - name: GITREPO
           valueFrom:
             configMapKeyRef:
-              name: nginx
-              key: GIT_URL
+              name: strand-configmap
+              key: GITREPO
         volumeMounts:
         - mountPath: /cdn
           name: cdn
