@@ -34,16 +34,29 @@ spec:
   containers: 
   - name: cdn
     image: nginx:latest
-    command: 
-  initContainers:
-  - name: init-step1 # INIT 1 
-    image: alpine:/git:latest
-    command: ["git", "clone", "-b"]
-    args: ["$(GITREPO)"]
-    env: 
-  - name: init-step2
-    image: 
-    command: 
+    ports:
+    - containerPort: 80
+      name: http
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: cdn
+      initContainers:
+      - name: git
+        image: alpine/git:latest
+        command: ["git"]
+        args: ["clone", "$(GITREPO)", "/cdn"]
+        env:
+        - name: GIT_URL
+          valueFrom:
+            configMapKeyRef:
+              name: nginx
+              key: GIT_URL
+        volumeMounts:
+        - mountPath: /cdn
+          name: cdn
+      volumes:
+      - name: cdn
+        emptyDir: {}
        
 ---
 
