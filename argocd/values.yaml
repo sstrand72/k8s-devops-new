@@ -1,0 +1,4 @@
+replicas: 4
+repo: "gcr.io/heptio-images"
+image: "ks-guestbook-demo"
+tag: "0.2"
